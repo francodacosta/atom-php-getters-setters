@@ -1,0 +1,18 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable my-package': 'php-getters-setters:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'PHP Getters and Setters'
+      'submenu': [
+        { 'label': 'generate All', 'command': 'php-getters-setters:allGettersSetter' }
+        { 'label': 'generate Getters', 'command': 'php-getters-setters:allGetters' }
+        { 'label': 'generate Setters', 'command': 'php-getters-setters:allSetters' }
+      ]
+    ]
+  }
+]
