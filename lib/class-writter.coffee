@@ -8,9 +8,9 @@ class ClassWritter
         # console.log(variable, type, description, scope = 'public')
         name  = "get" + variable.charAt(0).toUpperCase() + variable.slice 1
 
-        if description.length == 0 {
+        if description.length == 0
             description = variable
-        }
+
 
         if name in @functions
             console.log(name, 'function exists, not adding')
@@ -37,10 +37,10 @@ class ClassWritter
         # console.log(variable, type, description, scope = 'public')
         name  = "set" + variable.charAt(0).toUpperCase() + variable.slice 1
 
-        if description.length == 0 {
+        if description.length == 0
             description = variable
-        }
         
+
         if name in @functions
             console.log(name, 'function exists, not adding')
             return ''
