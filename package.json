@@ -1,14 +1,17 @@
 {
   "name": "php-getters-setters",
   "main": "./lib/my-package",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "generate getters and setters for your php class",
   "repository": "https://github.com/francodacosta/atom-php-getters-setters",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  },
-  "activationEvents": ["php-getters-setters:allGettersSetter", "php-getters-setters:allGetters", "php-getters-setters:allSetters"]
+  "dependencies": {},
+  "activationEvents": [
+    "php-getters-setters:allGettersSetter",
+    "php-getters-setters:allGetters",
+    "php-getters-setters:allSetters"
+  ]
 }
