@@ -1,7 +1,6 @@
 MyPackageView = require './my-package-view'
 BaseCommand = require './base-command'
 PhpParser = require './php-parser'
-ClassWritter = require './class-writter'
 TemplateManager = require './template-manager'
 
 module.exports =
@@ -10,6 +9,7 @@ module.exports =
     configDefaults:
         doNotTypeHint: ["mixed", "int","integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
         camelCasedMethodNames: true
+        generateSettersFirst: false
         getterTemplate: "
 \ \ \ \ /**\n
 \ \ \ \ * Get the value of %description% \n
@@ -71,12 +71,17 @@ module.exports =
 
         cw = new TemplateManager(functions)
 
-        editor = atom.workspace.getActiveEditor()
+        generateSettersFirst = atom.config.get 'php-getters-setters.generateSettersFirst'
 
         code = ''
         for variable in variables
-            code += cw.writeGetter(variable)
-            code += cw.writeSetter(variable)
+
+            if generateSettersFirst
+                code += cw.writeSetter(variable)
+                code += cw.writeGetter(variable)
+            else
+                code += cw.writeGetter(variable)
+                code += cw.writeSetter(variable)
 
         @bc.writeAtEnd(code)
 
