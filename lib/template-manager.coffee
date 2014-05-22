@@ -23,7 +23,6 @@ class TemplateManager
 
     getSnakeCasedVariableName: (variable) ->
         parts = variable.split('_')
-        console.log parts
         if null == parts
             parts = [variable]
 
@@ -40,14 +39,29 @@ class TemplateManager
 
         return type
 
+    getHumanReadableVariableName: (variableName) ->
+        parts = variableName.split('_')
+        if null == parts
+            parts = [variable]
+
+        name = ''
+        for part in parts
+            subParts = (part.charAt(0).toUpperCase() + part.slice 1 ).match(/_(.*)|([A-Z][a-z]+)/g)
+            if subParts
+                for part in subParts
+                    name +=  part + ' '
+            else
+                name += part + ' '
+
+        return name.trim()
+
     processVariable: (variable) ->
         name = variable.name.replace(/^_/,'');
-        console.log(variable)
         return {
             name: name,
             type: variable.type,
             typeHint: @determineTypeHint(variable.type),
-            description: variable.description || variable.name,
+            description: variable.description || @getHumanReadableVariableName(variable.name),
             getterScope: variable.scopeGetter,
             setterScope: variable.scopeSetter,
         }

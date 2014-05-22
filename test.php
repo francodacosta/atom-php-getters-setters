@@ -43,6 +43,11 @@ class Job extends AbstractEntity
      */
     private $_underscored;
 
+    /**
+     * @var string
+     */
+    private $smartVariableName;
+
 
     public function __construct()
     {
