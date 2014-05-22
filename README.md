@@ -5,9 +5,6 @@ With PHP Getters and Setters you can automatically generate _Getters_ and _Sette
 
 The code produced is PSR compatible
 
-This is a port of the sublime text plugin https://github.com/francodacosta/sublime-php-getters-setters/ only with the basic functionality.
-In the near future all features will be ported
-
 Features:
 ---------
 
@@ -25,42 +22,11 @@ Features:
 class test
 {
     /**
-     * @protected
-     * @ORM\Column( type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * the job id
-     * @read-only
-     * @var string
+     * foo container
      *
-     * @ORM\Column(type="string", length=255)
+     * @var AbcClass
      */
-    private $code;
-
-    /**
-     * snake cased var
-     *
-     * @var string
-     */
-    private $snaked_case_var;
-
-    /**
-     * private underscore variable
-     *
-     * @var string
-     */
-    private $_underscored;
-
-    /**
-     * @var string
-     */
-    private $smartVariableName;
-
-    }
+    private $foo;
 }
 ```
 
@@ -70,158 +36,32 @@ class test
 class test
 {
     /**
-     * @protected
-     * @ORM\Column( type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * the job id
-     * @read-only
-     * @var string
+     * foo container
      *
-     * @ORM\Column(type="string", length=255)
+     * @var AbcClass 
      */
-    private $code;
+    private $foo;
 
     /**
-     * snake cased var
+     * Gets the foo container.
      *
-     * @var string
+     * @return AbcClass
      */
-    private $snaked_case_var;
-
-    /**
-     * private underscore variable
-     *
-     * @var string
-     */
-    private $_underscored;
-
-    /**
-     * @var string
-     */
-    private $smartVariableName;
-
-
-    /**
-     * Get the value of Id
-     *
-     * @return mixed
-     */
-    protected function getId()
+    public function getFoo()
     {
-        return $this->id;
+        return $this->foo;
     }
 
     /**
-     * Set the value of Id
+     * Sets the foo container.
      *
-     * @param mixed id
+     * @param AbcClass $foo the foo
      *
      * @return self
      */
-    protected function setId($value)
+    public function setFoo(AbcClass $foo)
     {
-        $this->id = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of the job id
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * Set the value of the job id
-     *
-     * @param string code
-     *
-     * @return self
-     */
-    private function setCode($value)
-    {
-        $this->code = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of snake cased var
-     *
-     * @return string
-     */
-    public function getSnakedCaseVar()
-    {
-        return $this->snaked_case_var;
-    }
-
-    /**
-     * Set the value of snake cased var
-     *
-     * @param string snaked_case_var
-     *
-     * @return self
-     */
-    public function setSnakedCaseVar($value)
-    {
-        $this->snaked_case_var = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of private underscore variable
-     *
-     * @return string
-     */
-    public function getUnderscored()
-    {
-        return $this->underscored;
-    }
-
-    /**
-     * Set the value of private underscore variable
-     *
-     * @param string underscored
-     *
-     * @return self
-     */
-    public function setUnderscored($value)
-    {
-        $this->underscored = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Smart Variable Name
-     *
-     * @return string
-     */
-    public function getSmartVariableName()
-    {
-        return $this->smartVariableName;
-    }
-
-    /**
-     * Set the value of Smart Variable Name
-     *
-     * @param string smartVariableName
-     *
-     * @return self
-     */
-    public function setSmartVariableName($value)
-    {
-        $this->smartVariableName = $value;
+        $this->foo = $foo;
 
         return $this;
     }
