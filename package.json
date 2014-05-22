@@ -12,6 +12,7 @@
   "activationEvents": [
     "php-getters-setters:allGettersSetter",
     "php-getters-setters:allGetters",
-    "php-getters-setters:allSetters"
+    "php-getters-setters:allSetters",
+    "php-getters-setters:showUI"
   ]
 }

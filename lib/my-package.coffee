@@ -2,6 +2,7 @@ MyPackageView = require './my-package-view'
 BaseCommand = require './base-command'
 PhpParser = require './php-parser'
 TemplateManager = require './template-manager'
+UIView = require './ui.view'
 
 module.exports =
     myPackageView: null
@@ -44,6 +45,7 @@ module.exports =
         atom.workspaceView.command "php-getters-setters:allGettersSetter", => @allGettersSetter()
         atom.workspaceView.command "php-getters-setters:allGetters", => @allGetters()
         atom.workspaceView.command "php-getters-setters:allSetters", => @allSetters()
+        atom.workspaceView.command "php-getters-setters:showUI", => @showUI()
 
     deactivate: ->
         @myPackageView.destroy()
@@ -62,12 +64,32 @@ module.exports =
             functions: @parser.getFunctions()
         }
 
-    allGettersSetter: ->
+    showUI: ->
+        editor = atom.workspace.getActiveEditor()
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
+            alert ('this is not a PHP file')
 
         data = @parse()
         # console.log(data)
         variables = data.variables
         functions = data.functions
+
+        ui = new UIView(variables: variables, caller: @)
+
+        atom.workspaceView.append(ui)
+
+
+    allGettersSetter: (variables) ->
+        editor = atom.workspace.getActiveEditor()
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
+            alert ('this is not a PHP file')
+
+        data = @parse()
+        # console.log(data)
+        variables = variables || data.variables
+        functions = data.functions
+
+        console.log(variables)
 
         cw = new TemplateManager(functions)
 
@@ -85,10 +107,14 @@ module.exports =
 
         @bc.writeAtEnd(code)
 
-    allGetters: ->
+    allGetters: (variables) ->
+        editor = atom.workspace.getActiveEditor()
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
+            alert ('this is not a PHP file')
+
         data = @parse()
         # console.log(data)
-        variables = data.variables
+        variables = variables || data.variables
         functions = data.functions
 
         cw = new TemplateManager(functions)
@@ -99,9 +125,13 @@ module.exports =
 
         @bc.writeAtEnd(code)
 
-    allSetters: ->
+    allSetters: (variables) ->
+        editor = atom.workspace.getActiveEditor()
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
+            alert ('this is not a PHP file')
+            
         data = @parse()
-        variables = data.variables
+        variables = variables || data.variables
         functions = data.functions
 
         cw = new TemplateManager(functions)
