@@ -42,12 +42,14 @@ class TemplateManager
 
     processVariable: (variable) ->
         name = variable.name.replace(/^_/,'');
+        console.log(variable)
         return {
             name: name,
             type: variable.type,
             typeHint: @determineTypeHint(variable.type),
             description: variable.description || variable.name,
-            methodScope: variable.methodScope || 'public'
+            getterScope: variable.scopeGetter,
+            setterScope: variable.scopeSetter,
         }
 
     getMethodName: (type, variableName) ->
@@ -69,11 +71,16 @@ class TemplateManager
             variable.typeHint += ' '
 
 
+        if 'get' == methodType
+            scope = variable.getterScope
+        else
+            scope = variable.setterScope
+
         return template.replace /%description%/g, variable.description
          .replace /%methodName%/g, methodName
          .replace /%variable%/g, variable.name
          .replace /%type%/g, variable.type
-         .replace /%scope%/g, variable.methodScope
+         .replace /%scope%/g, scope
          .replace /%typeHint%/g, variable.typeHint
 
 

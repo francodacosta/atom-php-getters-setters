@@ -52,7 +52,9 @@ class PhpParser
         return {
             name       : line.match(/\$(\w*)/)[1],
             type       : type,
-            description: docblock.description
+            description: docblock.description,
+            scopeSetter: docblock.scopeSetter,
+            scopeGetter: docblock.scopeGetter
         }
 
     processDocBlock: (content) ->
@@ -71,6 +73,25 @@ class PhpParser
                 inDescription = false
             if x.search(/^@var/) > -1
                 type = x.replace(/@var/,'').trim()
+
+            if x.search(/^@internal/) > -1 || x.search(/^@private/) > -1
+                scopeSetter = 'private'
+                scopeGetter = 'private'
+
+            if x.search(/^@protected/) > -1
+                scopeSetter = 'protected'
+                scopeGetter = 'protected'
+
+            if x.search(/^@read-only/) > -1
+                scope = x.replace(/@read-only/,'').trim()
+                if 'protected' == scope
+                    scope = 'protected'
+                else
+                    scope = 'private'
+
+                scopeSetter = scope
+                scopeGetter = 'public'
+
             if x.search(/^@type/) > -1
                 type = x.replace(/@type/,'').trim()
             if '' == x
@@ -81,7 +102,9 @@ class PhpParser
 
         return {
             type: type,
-            description: description
+            description: description,
+            scopeSetter: scopeSetter || 'public',
+            scopeGetter: scopeGetter || 'public'
         }
 
     getFunctions: ->

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Job extends AbstractEntity
 {
     /**
-     *
+     * @protected
      * @ORM\Column( type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -22,7 +22,7 @@ class Job extends AbstractEntity
 
     /**
      * the job id
-     *
+     * @read-only
      * @var string
      *
      * @ORM\Column(type="string", length=255)
