@@ -12,6 +12,7 @@ Features:
 ---------
 
 * Generate Getters, Setters or Both
+* Control method scope via a DocBlock tag
 
 
 
@@ -70,22 +71,22 @@ This is an huge time saver!
 
 Special DocBlock tags
 ---------------------
-_@internal_: getter and setter will be private
+__@internal__: getter and setter will be private
 
-_@private_: getter and setter will be private
+__@private__: getter and setter will be private
 
-_@protected_: getter and setter will be protected
+__@protected__: getter and setter will be protected
 
-_@read-only private|protected_: getter will be public, setter will be private or protected (defaults to private)
+__@read-only private|protected__: getter will be public, setter will be private or protected (defaults to private)
 
 Settings:
 -----------
-_doNotTypeHint_: an array of items that when present in *@var* declaration are ignored and not used as type hint
+__doNotTypeHint__: an array of items that when present in *@var* declaration are ignored and not used as type hint
 when using the gui settings this is a comma separated list of terms
 
-_camelCasedMethodNames_: method names will follow PSR rules
+__camelCasedMethodNames__: method names will follow PSR rules
 PSR states that all method names must be camel cased, if set to false method names won't be Camel Cased
 
-_getterTemplate_: the template for the getter
+__getterTemplate__: the template for the getter
 
-_setterTemplate_: the template for the setter
+__setterTemplate__: the template for the setter
