@@ -3,6 +3,8 @@ PHP Getters and Setters
 
 With PHP Getters and Setters you can automatically generate _Getters_ and _Setters_ for your php classes.
 
+The code produced is PSR compatible
+
 This is a port of the sublime text plugin https://github.com/francodacosta/sublime-php-getters-setters/ only with the basic functionality.
 In the near future all features will be ported
 
@@ -65,3 +67,15 @@ class test
 As you can see if get to trouble of commenting your variables, the generated functions can be used without modification.
 
 This is an huge time saver!
+
+Settings:
+-----------
+_doNotTypeHint_: an array of items that when present in *@var* declaration are ignored and not used as type hint
+when using the gui settings this is a comma separated list of terms
+
+_camelCasedMethodNames_: method names will follow PSR rules
+PSR states that all method names must be camel cased, if set to false method names won't be Camel Cased
+
+_getterTemplate_: the template for the getter
+
+_setterTemplate_: the template for the setter

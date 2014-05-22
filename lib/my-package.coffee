@@ -2,13 +2,40 @@ MyPackageView = require './my-package-view'
 BaseCommand = require './base-command'
 PhpParser = require './php-parser'
 ClassWritter = require './class-writter'
+TemplateManager = require './template-manager'
 
 module.exports =
     myPackageView: null
 
     configDefaults:
         doNotTypeHint: ["mixed", "int","integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
-        # doNotTypeHint: "mixed,int,integer,double,float,number,string,boolean,bool,numeric,unknown"
+        camelCasedMethodNames: true
+        getterTemplate: "
+\ \ \ \ /**\n
+\ \ \ \ * Get the value of %description% \n
+\ \ \ \ * \n
+\ \ \ \ * @return %type%\n
+\ \ \ \ */\n
+\ \ \ %scope% function %methodName%()\n
+\ \ \ {\n
+\ \ \ \ \ \ \ return $this->%variable%;\n
+\ \ \ }\n
+\n"
+        setterTemplate: "
+\ \ \ \ /** \n
+\ \ \ \ * Set the value of %description% \n
+\ \ \ \ * \n
+\ \ \ \ * @param %type% %variable%\n
+\ \ \ \ * \n
+\ \ \ \ * @return self\n
+\ \ \ \ */\n
+\ \ \ %scope% function %methodName%(%typeHint%$value)\n
+\ \ \ {\n
+\ \ \ \ \ \ \ $this->%variable% = $value;\n
+\n
+\ \ \ \ \ \ \ return $this;\n
+\ \ \ }\n
+\n"
 
 
     activate: (state) ->
@@ -42,14 +69,14 @@ module.exports =
         variables = data.variables
         functions = data.functions
 
-        cw = new ClassWritter(functions)
+        cw = new TemplateManager(functions)
 
         editor = atom.workspace.getActiveEditor()
 
         code = ''
         for variable in variables
-            code += cw.writeGetter(variable.name, variable.type, variable.typeHint, variable.description)
-            code += cw.writeSetter(variable.name, variable.type, variable.typeHint, variable.description)
+            code += cw.writeGetter(variable)
+            code += cw.writeSetter(variable)
 
         @bc.writeAtEnd(code)
 
@@ -59,28 +86,23 @@ module.exports =
         variables = data.variables
         functions = data.functions
 
-        cw = new ClassWritter(functions)
-
-        editor = atom.workspace.getActiveEditor()
+        cw = new TemplateManager(functions)
 
         code = ''
         for variable in variables
-            code += cw.writeGetter(variable.name, variable.type, variable.description)
+            code += cw.writeGetter(variable)
 
         @bc.writeAtEnd(code)
 
     allSetters: ->
         data = @parse()
-        # console.log(data)
         variables = data.variables
         functions = data.functions
 
-        cw = new ClassWritter(functions)
-
-        editor = atom.workspace.getActiveEditor()
+        cw = new TemplateManager(functions)
 
         code = ''
         for variable in variables
-            code += cw.writeSetter(variable.name, variable.type, variable.description)
+            code += cw.writeSetter(variable)
 
         @bc.writeAtEnd(code)

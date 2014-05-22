@@ -5,8 +5,6 @@ class PhpParser
     functionRegExp: /function[ ]{0,}(.*)[ ]{0,}\(/g
     content : ''
 
-    constructor: (ignoredTypeHints) ->
-        @ignoredTypeHints = ignoredTypeHints
 
     setContent: (content) ->
         @content = content
@@ -14,11 +12,6 @@ class PhpParser
     getContent: ->
         return @content
 
-    determineTypeHint: (type) ->
-        if type in @ignoredTypeHints
-            return ""
-
-        return type
 
     processLine: (line) ->
         content = @getContent()
@@ -59,7 +52,6 @@ class PhpParser
         return {
             name       : line.match(/\$(\w*)/)[1],
             type       : type,
-            typeHint   : @determineTypeHint(type)
             description: docblock.description
         }
 

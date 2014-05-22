@@ -30,46 +30,18 @@ class Job extends AbstractEntity
     private $code;
 
     /**
-     * the conversion status (running, aborted, etc)
+     * snake cased var
+     *
      * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $status;
+    private $snaked_case_var;
 
     /**
-     * starting time
+     * private underscore variable
      *
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var string
      */
-    private $started;
-
-    /**
-     * end time
-     *
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $finished;
-
-    /**
-     * was the job successful
-     * @var boolean
-     *
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $success;
-
-    /**
-     * is the conversion part of the job done ?
-     * @var boolean
-     *
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $conversionDone;
+    private $_underscored;
 
 
     public function __construct()
