@@ -6,6 +6,11 @@ ClassWritter = require './class-writter'
 module.exports =
     myPackageView: null
 
+    configDefaults:
+        doNotTypeHint: ["mixed", "int","integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
+        # doNotTypeHint: "mixed,int,integer,double,float,number,string,boolean,bool,numeric,unknown"
+
+
     activate: (state) ->
         # @myPackageView = new MyPackageView(state.myPackageViewState)
         #atom.workspaceView.command "my-package:parse", => @parse()
@@ -20,16 +25,18 @@ module.exports =
         myPackageViewState: @myPackageView.serialize()
 
     parse: ->
+        ignoredTypeHints = atom.config.get 'php-getters-setters.doNotTypeHint'
         @bc = new BaseCommand()
-        @parser = new PhpParser()
+        @parser = new PhpParser(ignoredTypeHints)
         x = @bc.getEditorContents()
         @parser.setContent(x)
         return {
-            variables: @parser.getVariables(),
+            variables: @parser.getVariables(ignoredTypeHints),
             functions: @parser.getFunctions()
         }
 
     allGettersSetter: ->
+
         data = @parse()
         # console.log(data)
         variables = data.variables
@@ -41,8 +48,8 @@ module.exports =
 
         code = ''
         for variable in variables
-            code += cw.writeGetter(variable.name, variable.type, variable.description)
-            code += cw.writeSetter(variable.name, variable.type, variable.description)
+            code += cw.writeGetter(variable.name, variable.type, variable.typeHint, variable.description)
+            code += cw.writeSetter(variable.name, variable.type, variable.typeHint, variable.description)
 
         @bc.writeAtEnd(code)
 

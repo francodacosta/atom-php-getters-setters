@@ -17,12 +17,7 @@ class MyPackageView extends View
   destroy: ->
     @detach()
 
-  parse: ->
-      console.log "parse"
-
-  allGettersSetter: ->
-    console.log "all getter and setter"
-
+  
   toggle: ->
     console.log "MyPackageView was toggled!"
     if @hasParent()

@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Job extends AbstractEntity
 {
     /**
-     * @var integer
      *
      * @ORM\Column( type="integer")
      * @ORM\Id
@@ -78,5 +77,4 @@ class Job extends AbstractEntity
         $this->started = new \DateTime;
         $this->conversionDone = false;
     }
-
 }

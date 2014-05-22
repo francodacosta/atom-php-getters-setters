@@ -5,11 +5,20 @@ class PhpParser
     functionRegExp: /function[ ]{0,}(.*)[ ]{0,}\(/g
     content : ''
 
+    constructor: (ignoredTypeHints) ->
+        @ignoredTypeHints = ignoredTypeHints
+
     setContent: (content) ->
         @content = content
 
     getContent: ->
         return @content
+
+    determineTypeHint: (type) ->
+        if type in @ignoredTypeHints
+            return ""
+
+        return type
 
     processLine: (line) ->
         content = @getContent()
@@ -46,9 +55,11 @@ class PhpParser
 
         docblock = @processDocBlock(lines.slice(end, start).reverse().join('\n'))
 
+        type = docblock.type || 'mixed'
         return {
-            name: line.match(/\$(\w*)/)[1],
-            type: docblock.type,
+            name       : line.match(/\$(\w*)/)[1],
+            type       : type,
+            typeHint   : @determineTypeHint(type)
             description: docblock.description
         }
 
@@ -83,7 +94,7 @@ class PhpParser
 
     getFunctions: ->
         ret = []
-        
+
         while data = @functionRegExp.exec @getContent()
             ret.push data[1]
 
