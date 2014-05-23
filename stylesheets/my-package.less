@@ -5,7 +5,8 @@
 @import "ui-variables";
 
 .php-getters-setters.overlay .var-list{
-    border: 1px solid @text-color;
+    border: 1px solid @pane-item-border-color;
+    background: @pane-item-background-color;
     list-style: none;
     padding: 5px;
 }
@@ -23,6 +24,13 @@
     margin-top: 20px;
 }
 
+.php-getters-setters.overlay button {
+    background: @button-background-color;
+    border-color: @base-border-color;
+}
+.php-getters-setters.overlay button:hover {
+    background: @button-background-color-hover;
+}
 .php-getters-setters.overlay footer .secondary{
     float: right
 }
