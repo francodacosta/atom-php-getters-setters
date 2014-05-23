@@ -68,6 +68,7 @@ module.exports =
         editor = atom.workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
+            return
 
         data = @parse()
         # console.log(data)
@@ -83,13 +84,11 @@ module.exports =
         editor = atom.workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
+            return
 
         data = @parse()
-        # console.log(data)
         variables = variables || data.variables
         functions = data.functions
-
-        console.log(variables)
 
         cw = new TemplateManager(functions)
 
@@ -111,9 +110,9 @@ module.exports =
         editor = atom.workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
+            return
 
         data = @parse()
-        # console.log(data)
         variables = variables || data.variables
         functions = data.functions
 
@@ -129,7 +128,8 @@ module.exports =
         editor = atom.workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
-            
+            return
+
         data = @parse()
         variables = variables || data.variables
         functions = data.functions
