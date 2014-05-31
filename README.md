@@ -11,7 +11,7 @@ Features:
 * Generate Getters, Setters or Both
 * Select all variables or just some via UI
 * Control method scope via a DocBlock tag
-* intelligent DocBlocks, if you use descriptive variable names you do not need to provide a description, the method comment will set acrodingly
+* intelligent guessing of variable names, if you use descriptive variable names you do not need to provide a description, the method comment will set accordingly
 
 
 
@@ -38,7 +38,7 @@ class test
     /**
      * foo container
      *
-     * @var AbcClass 
+     * @var AbcClass
      */
     private $foo;
 

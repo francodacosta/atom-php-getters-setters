@@ -56,7 +56,7 @@ class TemplateManager
         return name.trim()
 
     processVariable: (variable) ->
-        name = variable.name.replace(/^_/,'');
+        name = variable.name #.replace(/^_/,'');
         return {
             name: name,
             type: variable.type,
