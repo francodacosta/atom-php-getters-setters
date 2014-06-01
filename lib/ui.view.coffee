@@ -14,11 +14,11 @@ class UIView extends View
                           @input type: "checkbox", value: variable.name
                           @text(variable.name)
 
-            @p "what to generate ?"
+            @p "what accessors do you want generated ?"
             @select class: "action", =>
                 @option value: 'all', "Getters and Setters"
-                @option value: 'getters', "Getters"
-                @option value: 'setters', "Setters"
+                @option value: 'getters', "Only Getters"
+                @option value: 'setters', "Only Setters"
 
             @footer =>
                 @button class:"primary", click: 'generate', "go!"

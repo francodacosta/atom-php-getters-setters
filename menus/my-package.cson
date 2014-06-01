@@ -9,11 +9,11 @@
     'submenu': [
       'label': 'PHP Getters and Setters'
       'submenu': [
-        { 'label': 'generate All', 'command': 'php-getters-setters:allGettersSetter' }
-        { 'label': 'generate Getters', 'command': 'php-getters-setters:allGetters' }
-        { 'label': 'generate Setters', 'command': 'php-getters-setters:allSetters' }
-        { 'label': ' '}
-        { 'label': 'open UI', 'command': 'php-getters-setters:showUI' }
+        { 'label': 'Getters and Setters', 'command': 'php-getters-setters:allGettersSetter' }
+        { 'label': 'Only Getters', 'command': 'php-getters-setters:allGetters' }
+        { 'label': 'Only Setters', 'command': 'php-getters-setters:allSetters' }
+        { '-': '-'}
+        { 'label': 'Open UI', 'command': 'php-getters-setters:showUI' }
       ]
     ]
   }

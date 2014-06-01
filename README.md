@@ -12,6 +12,7 @@ Features:
 * Select all variables or just some via UI
 * Control method scope via a DocBlock tag
 * intelligent guessing of variable names, if you use descriptive variable names you do not need to provide a description, the method comment will set accordingly
+* supports _ in property names
 
 
 
@@ -84,8 +85,7 @@ __@read-only private|protected__: getter will be public, setter will be private 
 
 Settings:
 -----------
-__doNotTypeHint__: an array of items that when present in *@var* declaration are ignored and not used as type hint
-when using the gui settings this is a comma separated list of terms
+__doNotTypeHint__: an array of items that when present in *@type* or *@var* declarations are ignored and not used as type hint
 
 __camelCasedMethodNames__: method names will follow PSR rules
 PSR states that all method names must be camel cased, if set to false method names won't be Camel Cased
