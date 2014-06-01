@@ -1,7 +1,7 @@
 {
   "name": "php-getters-setters",
   "main": "./lib/my-package",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "generate getters and setters for your php class",
   "repository": "https://github.com/francodacosta/atom-php-getters-setters",
   "license": "MIT",
