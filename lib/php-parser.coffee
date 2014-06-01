@@ -2,44 +2,37 @@
 module.exports =
 class PhpParser
     variableRegExp : /((?:private|public|protected)[ ]{0,}(?:final|static)?[ ]{0,}(?:\$.*?)[ |=|;].*)/g
-    functionRegExp: /function[ ]{0,}(.*)[ ]{0,}\(/g
-    content : ''
+    functionRegExp : /function[ ]{0,}(.*)[ ]{0,}\(/g
+    content        : ''
 
-
-    setContent: (content) ->
-        @content = content
+    setContent: (@content) ->
 
     getContent: ->
         return @content
 
-
     processLine: (line) ->
-        content = @getContent()
+        content  = @getContent()
         position = content.indexOf(line)
+        content  = content.substring(0, position)
+        lines    = content.split("\n").reverse()
 
-        content = content.substring(0, position)
-        lines = content.split("\n").reverse()
+        cursor =  0
+        start  = -1
+        end    = -1
 
-        cursor = 0
-        start = -1
-        end = -1
         for x in lines
             x = x.trim()
 
-
             if x.search(@variableRegExp)>-1
-                # console.log('we found another var')
                 start = 0
                 end = 0
                 break
 
             if "/**" == x
                 start = cursor
-                # console.log('found start ', start)
 
             if "*/" == x
                 end = cursor
-                # console.log('found end', end)
 
             if start > -1 and end > -1
                 break
@@ -50,18 +43,18 @@ class PhpParser
 
         type = docblock.type || 'mixed'
         return {
-            name       : line.match(/\$(\w*)/)[1],
-            type       : type,
-            description: docblock.description,
-            scopeSetter: docblock.scopeSetter,
-            scopeGetter: docblock.scopeGetter
+            name        : line.match(/\$(\w*)/)[1],
+            type        : type,
+            description : docblock.description,
+            scopeSetter : docblock.scopeSetter,
+            scopeGetter : docblock.scopeGetter
         }
 
     processDocBlock: (content) ->
         lines = content.split("\n")
 
         inDescription = true
-        description = ''
+        description   = ''
 
         for x in lines
             x = x.trim()
@@ -71,6 +64,7 @@ class PhpParser
 
             if x.search(/^@/) > -1
                 inDescription = false
+
             if x.search(/^@var/) > -1
                 type = x.replace(/@var/,'').trim()
 
@@ -94,6 +88,7 @@ class PhpParser
 
             if x.search(/^@type/) > -1
                 type = x.replace(/@type/,'').trim()
+
             if '' == x
                 inDescription = false
 
