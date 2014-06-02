@@ -5,7 +5,7 @@ UIView          = require './ui.view'
 
 module.exports =
     configDefaults:
-        doNotTypeHint         : ["mixed", "int","integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
+        doNotTypeHint         : ["mixed", "int", "integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
         camelCasedMethodNames : true
         generateSettersFirst  : false
         getterTemplate        : "
@@ -35,18 +35,11 @@ module.exports =
 \ \ \ }\n
 \n"
 
-
     activate: (state) ->
         atom.workspaceView.command "php-getters-setters:allGettersSetter", => @allGettersSetter()
         atom.workspaceView.command "php-getters-setters:allGetters",       => @allGetters()
         atom.workspaceView.command "php-getters-setters:allSetters",       => @allSetters()
         atom.workspaceView.command "php-getters-setters:showUI",           => @showUI()
-
-    deactivate: ->
-        @myPackageView.destroy()
-
-    serialize: ->
-        myPackageViewState: @myPackageView.serialize()
 
     parse: ->
         ignoredTypeHints = atom.config.get 'php-getters-setters.doNotTypeHint'
@@ -68,7 +61,6 @@ module.exports =
             return
 
         data = @parse()
-        # console.log(data)
         variables = data.variables
         functions = data.functions
 

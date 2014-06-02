@@ -7,21 +7,26 @@
 .php-getters-setters.overlay .var-list{
     border: 1px solid @pane-item-border-color;
     background: @pane-item-background-color;
-    list-style: none;
-    padding: 5px;
+    width: 100%;
+    display: block;
     height: 300px;
     max-height: 300px;
     overflow: auto;
+    margin-bottom: 10px;
 }
-.php-getters-setters.overlay .var-list li{
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
-    margin-left: 5px;
+.php-getters-setters.overlay .var-list td{
+        padding-right: 10px;
+        padding-bottom: 5px;
 }
-.php-getters-setters.overlay .var-list li input{
-    margin-right: 5px;
+
+.php-getters-setters.overlay .var-list td *{
+    cursor: pointer;
 }
+.php-getters-setters.overlay .var-list tr:hover{
+    background: @background-color-highlight;
+    width: 100%;
+}
+
 
 .php-getters-setters.overlay footer {
     margin-top: 20px;
@@ -36,4 +41,13 @@
 }
 .php-getters-setters.overlay footer .secondary{
     float: right
+}
+
+.php-getters-setters.overlay #chk_accessor_setter ,
+.php-getters-setters.overlay #chk_accessor_getter {
+    margin-right: 5px;
+}
+
+.php-getters-setters.overlay #chk_accessor_setter {
+    margin-left: 30px;
 }

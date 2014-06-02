@@ -9,9 +9,9 @@
     'submenu': [
       'label': 'PHP Getters and Setters'
       'submenu': [
-        { 'label': 'Getters and Setters', 'command': 'php-getters-setters:allGettersSetter' }
-        { 'label': 'Only Getters', 'command': 'php-getters-setters:allGetters' }
-        { 'label': 'Only Setters', 'command': 'php-getters-setters:allSetters' }
+        { 'label': 'Generate All', 'command': 'php-getters-setters:allGettersSetter' }
+        { 'label': 'Generate Getters', 'command': 'php-getters-setters:allGetters' }
+        { 'label': 'Generate Setters', 'command': 'php-getters-setters:allSetters' }
         { '-': '-'}
         { 'label': 'Open UI', 'command': 'php-getters-setters:showUI' }
       ]
