@@ -14,6 +14,7 @@
         { 'label': 'Generate Setters', 'command': 'php-getters-setters:allSetters' }
         { '-': '-'}
         { 'label': 'Open UI', 'command': 'php-getters-setters:showUI' }
+        # { 'label': 'Add Property', 'command': 'php-getters-setters:newPropery' }
       ]
     ]
   }

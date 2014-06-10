@@ -2,6 +2,7 @@ BaseCommand     = require './base-command'
 PhpParser       = require './php-parser'
 TemplateManager = require './template-manager'
 UIView          = require './ui.view'
+NewPropertyView = require './new-property.view'
 
 module.exports =
     configDefaults:
@@ -40,6 +41,7 @@ module.exports =
         atom.workspaceView.command "php-getters-setters:allGetters",       => @allGetters()
         atom.workspaceView.command "php-getters-setters:allSetters",       => @allSetters()
         atom.workspaceView.command "php-getters-setters:showUI",           => @showUI()
+        atom.workspaceView.command "php-getters-setters:newPropery",       => @showAddProperty()
 
     parse: ->
         ignoredTypeHints = atom.config.get 'php-getters-setters.doNotTypeHint'
@@ -52,6 +54,18 @@ module.exports =
             variables: parser.getVariables(ignoredTypeHints),
             functions: parser.getFunctions()
         }
+
+    showAddProperty: ->
+        editor = atom.workspace.getActiveEditor()
+
+        unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
+            alert ('this is not a PHP file')
+            return
+
+
+        ui = new NewPropertyView(caller: @)
+
+        atom.workspaceView.append(ui)
 
     showUI: ->
         editor = atom.workspace.getActiveEditor()
@@ -68,6 +82,18 @@ module.exports =
 
         atom.workspaceView.append(ui)
 
+    getVarsToProcess: (selectedVars, varsInClass) ->
+        varsToProcess = []
+        if selectedVars.length > 0
+            for selectedVariable in selectedVars
+                for tmpVar in varsInClass
+                    if tmpVar.name == selectedVariable.name
+                        varsToProcess.push tmpVar
+        else
+            varsToProcess = varsInClass
+
+        console.log(varsToProcess)
+        return varsToProcess
 
     allGettersSetter: (variables) ->
         editor = atom.workspace.getActiveEditor()
@@ -76,7 +102,7 @@ module.exports =
             return
 
         data = @parse()
-        variables = variables || data.variables
+        variables = @getVarsToProcess(variables || [], data.variables)
         functions = data.functions
 
         cw = new TemplateManager(functions)
@@ -103,7 +129,8 @@ module.exports =
             return
 
         data = @parse()
-        variables = variables || data.variables
+
+        variables = @getVarsToProcess(variables || [], data.variables)
         functions = data.functions
 
         cw = new TemplateManager(functions)
@@ -122,7 +149,7 @@ module.exports =
             return
 
         data = @parse()
-        variables = variables || data.variables
+        variables = @getVarsToProcess(variables || [], data.variables)
         functions = data.functions
 
         cw = new TemplateManager(functions)

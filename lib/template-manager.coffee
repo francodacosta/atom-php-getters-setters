@@ -60,8 +60,8 @@ class TemplateManager
             type        : variable.type,
             typeHint    : @determineTypeHint(variable.type),
             description : variable.description || @getHumanReadableVariableName(variable.name),
-            getterScope : variable.scopeGetter,
-            setterScope : variable.scopeSetter,
+            getterScope : variable.getterScope,
+            setterScope : variable.setterScope,
         }
 
     getMethodName: (type, variableName) ->

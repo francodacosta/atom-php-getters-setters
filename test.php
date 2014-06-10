@@ -54,4 +54,7 @@ class Job extends AbstractEntity
         $this->started = new \DateTime;
         $this->conversionDone = false;
     }
+
+
+
 }
