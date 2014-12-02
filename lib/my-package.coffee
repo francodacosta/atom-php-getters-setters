@@ -28,9 +28,9 @@ module.exports =
 \ \ \ \ * \n
 \ \ \ \ * @return self\n
 \ \ \ \ */\n
-\ \ \ %scope% function %methodName%(%typeHint%$value)\n
+\ \ \ %scope% function %methodName%(%typeHint%$%variable%)\n
 \ \ \ {\n
-\ \ \ \ \ \ \ $this->%variable% = $value;\n
+\ \ \ \ \ \ \ $this->%variable% = $%variable%;\n
 \n
 \ \ \ \ \ \ \ return $this;\n
 \ \ \ }\n
