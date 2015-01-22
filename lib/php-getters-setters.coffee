@@ -13,7 +13,7 @@ module.exports =
                 type: 'string'
         camelCasedMethodNames:
             type: 'boolean'
-            title: 'Use CamelCased methos names '
+            title: 'Use CamelCased method names '
             default: true
         generateSettersFirst:
             type: 'boolean'
@@ -21,6 +21,7 @@ module.exports =
             default: false
         getterTemplate:
             type: 'string'
+            description: "paste your template here, one day atom will support text boxes ..."
             default: "
 \ \ \ \ /**\n
 \ \ \ \ * Get the value of %description% \n
@@ -34,6 +35,7 @@ module.exports =
 \n"
         setterTemplate:
             type: 'string'
+            description: "paste your template here, one day atom will support text boxes ..."
             default: "
 \ \ \ \ /** \n
 \ \ \ \ * Set the value of %description% \n
@@ -56,6 +58,7 @@ module.exports =
         atom.workspaceView.command "php-getters-setters:allSetters",       => @allSetters()
         atom.workspaceView.command "php-getters-setters:showUI",           => @showUI()
         atom.workspaceView.command "php-getters-setters:newPropery",       => @showAddProperty()
+
 
     parse: ->
         ignoredTypeHints = atom.config.get 'php-getters-setters.doNotTypeHint'
