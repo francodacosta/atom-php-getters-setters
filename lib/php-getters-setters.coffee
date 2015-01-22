@@ -5,11 +5,23 @@ UIView          = require './ui.view'
 NewPropertyView = require './new-property.view'
 
 module.exports =
-    configDefaults:
-        doNotTypeHint         : ["mixed", "int", "integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
-        camelCasedMethodNames : true
-        generateSettersFirst  : false
-        getterTemplate        : "
+    config:
+        doNotTypeHint:
+            type: 'array'
+            default: ["mixed", "int", "integer", "double", "float", "number", "string", "boolean", "bool", "numeric", "unknown"]
+            items:
+                type: 'string'
+        camelCasedMethodNames:
+            type: 'boolean'
+            title: 'Use CamelCased methos names '
+            default: true
+        generateSettersFirst:
+            type: 'boolean'
+            title: 'Generate Setters first '
+            default: false
+        getterTemplate:
+            type: 'string'
+            default: "
 \ \ \ \ /**\n
 \ \ \ \ * Get the value of %description% \n
 \ \ \ \ * \n
@@ -20,7 +32,9 @@ module.exports =
 \ \ \ \ \ \ \ return $this->%variable%;\n
 \ \ \ }\n
 \n"
-        setterTemplate        : "
+        setterTemplate:
+            type: 'string'
+            default: "
 \ \ \ \ /** \n
 \ \ \ \ * Set the value of %description% \n
 \ \ \ \ * \n
