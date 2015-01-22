@@ -1,6 +1,6 @@
 {
   "name": "php-getters-setters",
-  "main": "./lib/my-package",
+  "main": "./lib/php-getters-setters",
   "version": "0.2.0",
   "description": "generate getters and setters for your php class",
   "repository": "https://github.com/francodacosta/atom-php-getters-setters",
