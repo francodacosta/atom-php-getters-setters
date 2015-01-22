@@ -93,3 +93,37 @@ PSR states that all method names must be camel cased, if set to false method nam
 __getterTemplate__: the template for the getter
 
 __setterTemplate__: the template for the setter
+
+## Default templates
+
+### Getter
+```php
+\ \ \ \ /**\n
+\ \ \ \ * Get the value of %description% \n
+\ \ \ \ * \n
+\ \ \ \ * @return %type%\n
+\ \ \ \ */\n
+\ \ \ %scope% function %methodName%()\n
+\ \ \ {\n
+\ \ \ \ \ \ \ return $this->%variable%;\n
+\ \ \ }\n
+\n
+```
+
+### Setter
+```php
+\ \ \ \ /** \n
+\ \ \ \ * Set the value of %description% \n
+\ \ \ \ * \n
+\ \ \ \ * @param %type% %variable%\n
+\ \ \ \ * \n
+\ \ \ \ * @return self\n
+\ \ \ \ */\n
+\ \ \ %scope% function %methodName%(%typeHint%$%variable%)\n
+\ \ \ {\n
+\ \ \ \ \ \ \ $this->%variable% = $%variable%;\n
+\n
+\ \ \ \ \ \ \ return $this;\n
+\ \ \ }\n
+\n
+```
