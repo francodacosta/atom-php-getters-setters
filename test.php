@@ -55,6 +55,4 @@ class Job extends AbstractEntity
         $this->conversionDone = false;
     }
 
-
-
 }

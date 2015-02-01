@@ -1,8 +1,9 @@
-BaseCommand     = require './base-command'
-PhpParser       = require './php-parser'
-TemplateManager = require './template-manager'
-UIView          = require './ui.view'
-NewPropertyView = require './new-property.view'
+BaseCommand        = require './base-command'
+PhpParser          = require './php-parser'
+TemplateManager    = require './template-manager'
+UIView             = require './ui.view'
+NewPropertyView    = require './new-property.view'
+TemplateEditorView = require './template-editor.view'
 
 module.exports =
     config:
@@ -21,7 +22,7 @@ module.exports =
             default: false
         getterTemplate:
             type: 'string'
-            description: "paste your template here, one day atom will support text boxes ..."
+            description: "You might want to use the template editor ..."
             default: "
 \ \ \ \ /**\n
 \ \ \ \ * Get the value of %description% \n
@@ -35,7 +36,7 @@ module.exports =
 \n"
         setterTemplate:
             type: 'string'
-            description: "paste your template here, one day atom will support text boxes ..."
+            description: "You might want to use the template editor ..."
             default: "
 \ \ \ \ /** \n
 \ \ \ \ * Set the value of %description% \n
@@ -58,6 +59,7 @@ module.exports =
         atom.workspaceView.command "php-getters-setters:allSetters",       => @allSetters()
         atom.workspaceView.command "php-getters-setters:showUI",           => @showUI()
         atom.workspaceView.command "php-getters-setters:newPropery",       => @showAddProperty()
+        atom.workspaceView.command "php-getters-setters:templateEditor",   => @showTemplateEditor()
 
 
     parse: ->
@@ -81,6 +83,16 @@ module.exports =
 
 
         ui = new NewPropertyView(caller: @)
+
+        atom.workspaceView.append(ui)
+
+    showTemplateEditor: ->
+        editor = atom.workspace.getActiveEditor()
+
+        getter = atom.config.get 'php-getters-setters.getterTemplate'
+        setter = atom.config.get 'php-getters-setters.setterTemplate'
+
+        ui = new TemplateEditorView(setter: setter, getter:getter, caller: @)
 
         atom.workspaceView.append(ui)
 

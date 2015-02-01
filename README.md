@@ -96,6 +96,8 @@ __setterTemplate__: the template for the setter
 
 ## Default templates
 
+A rudimentary template editor is available at ```Packages -> PHP Getters and Setters -> Template Editor```
+
 ### Getter
 ```php
 \ \ \ \ /**\n
