@@ -1,7 +1,4 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
-'context-menu':
-  '.overlayer':
-      'PHP Getters and Setters': 'php-getters-setters:showUI'
 
 'menu': [
   {
