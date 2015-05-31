@@ -1,7 +1,7 @@
 {
   "name": "php-getters-setters",
   "main": "./lib/php-getters-setters",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "generate getters and setters for your php class",
   "repository": {
     "type": "git",
@@ -12,6 +12,6 @@
     "atom": ">0.100.0"
   },
   "dependencies": {
-      "atom-space-pen-views": "^2.0.3"
+    "atom-space-pen-views": "^2.0.3"
   }
 }
