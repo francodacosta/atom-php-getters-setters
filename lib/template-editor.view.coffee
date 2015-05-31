@@ -1,4 +1,4 @@
-{View} = require 'atom'
+{View} = require 'atom-space-pen-views'
 
 module.exports =
 class TemplateEditorView extends View
@@ -27,7 +27,11 @@ class TemplateEditorView extends View
 
     # Tear down any state and detach
     destroy: ->
+        @modalPanel.destroy()
         @detach()
+
+    show: ->
+        @modalPanel = atom.workspace.addModalPanel(item: @, visible: true)
 
     keyDown: (evt) ->
         # we need this otherwise the input elements do not process arrow keys or the backspace

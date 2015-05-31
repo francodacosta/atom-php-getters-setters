@@ -54,12 +54,13 @@ module.exports =
 \n"
 
     activate: (state) ->
-        atom.workspaceView.command "php-getters-setters:allGettersSetter", => @allGettersSetter()
-        atom.workspaceView.command "php-getters-setters:allGetters",       => @allGetters()
-        atom.workspaceView.command "php-getters-setters:allSetters",       => @allSetters()
-        atom.workspaceView.command "php-getters-setters:showUI",           => @showUI()
-        atom.workspaceView.command "php-getters-setters:newPropery",       => @showAddProperty()
-        atom.workspaceView.command "php-getters-setters:templateEditor",   => @showTemplateEditor()
+        atom.commands.add 'atom-workspace',
+        "php-getters-setters:allGettersSetter": => @allGettersSetter()
+        "php-getters-setters:allGetters":       => @allGetters()
+        "php-getters-setters:allSetters":       => @allSetters()
+        "php-getters-setters:showUI":           => @showUI()
+        "php-getters-setters:newPropery":       => @showAddProperty()
+        "php-getters-setters:templateEditor":   => @showTemplateEditor()
 
 
     parse: ->
@@ -94,7 +95,7 @@ module.exports =
 
         ui = new TemplateEditorView(setter: setter, getter:getter, caller: @)
 
-        atom.workspaceView.append(ui)
+        ui.show()
 
     showUI: ->
         editor = atom.workspace.getActiveEditor()
@@ -109,8 +110,9 @@ module.exports =
 
         ui = new UIView(variables: variables, caller: @)
 
-        atom.workspaceView.append(ui)
+        ui.show()
 
+        # atom.views.getView(atom.workspace).append(ui)
     getVarsToProcess: (selectedVars, varsInClass) ->
         varsToProcess = []
         if selectedVars.length > 0

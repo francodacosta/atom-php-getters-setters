@@ -1,4 +1,4 @@
-{View} = require 'atom'
+{View} = require 'atom-space-pen-views'
 
 module.exports =
 class UIView extends View
@@ -53,7 +53,14 @@ class UIView extends View
 
     # Tear down any state and detach
     destroy: ->
+        @modalPanel.destroy()
         @detach()
+
+    show: ->
+        @modalPanel = atom.workspace.addModalPanel(item: @, visible: true)
+
+    getElement: ->
+        return @find('.php-getters-setters.overlay')
 
     generate: ->
         checked = @find('.var-list input:checked')
