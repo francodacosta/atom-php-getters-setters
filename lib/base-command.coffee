@@ -13,11 +13,11 @@ class BaseCommand
     writeAtEnd: (text) ->
         content = @getEditorContents()
         last = content.lastIndexOf('}')
-        editor = Workspace.getActiveEditor()
+        editor = Workspace.getActiveTextEditor()
 
         editor.setText ([content.slice(0, last), "\n"+text, content.slice(last)].join(''))
 
     getEditorContents: ->
-        editor = Workspace.getActiveEditor()
+        editor = Workspace.getActiveTextEditor()
 
         return editor.getText()
