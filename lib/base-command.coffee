@@ -2,7 +2,7 @@ module.exports =
 class BaseCommand
 
     appliesToCurrentEditor: ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         unless editor.getGrammar().scopeName is 'text.html.php'
             console.warn "Cannot run for non php files"
@@ -13,11 +13,11 @@ class BaseCommand
     writeAtEnd: (text) ->
         content = @getEditorContents()
         last = content.lastIndexOf('}')
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         editor.setText ([content.slice(0, last), "\n"+text, content.slice(last)].join(''))
 
     getEditorContents: ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         return editor.getText()

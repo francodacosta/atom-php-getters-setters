@@ -76,7 +76,7 @@ module.exports =
         }
 
     showAddProperty: ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
@@ -88,7 +88,7 @@ module.exports =
         atom.workspaceView.append(ui)
 
     showTemplateEditor: ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         getter = atom.config.get 'php-getters-setters.getterTemplate'
         setter = atom.config.get 'php-getters-setters.setterTemplate'
@@ -98,7 +98,7 @@ module.exports =
         ui.show()
 
     showUI: ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
 
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
@@ -127,7 +127,7 @@ module.exports =
         return varsToProcess
 
     allGettersSetter: (variables) ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
@@ -154,7 +154,7 @@ module.exports =
         bc.writeAtEnd(code)
 
     allGetters: (variables) ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
@@ -174,7 +174,7 @@ module.exports =
         bc.writeAtEnd(code)
 
     allSetters: (variables) ->
-        editor = atom.workspace.getActiveEditor()
+        editor = Workspace.getActiveEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
