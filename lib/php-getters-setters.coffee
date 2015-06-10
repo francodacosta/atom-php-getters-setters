@@ -127,7 +127,7 @@ module.exports =
         return varsToProcess
 
     allGettersSetter: (variables) ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
