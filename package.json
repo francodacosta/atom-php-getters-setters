@@ -1,7 +1,7 @@
 {
   "name": "php-getters-setters",
   "main": "./lib/php-getters-setters",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "generate getters and setters for your php class",
   "repository": {
     "type": "git",
