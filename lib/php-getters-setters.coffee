@@ -76,7 +76,7 @@ module.exports =
         }
 
     showAddProperty: ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
 
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
@@ -88,7 +88,7 @@ module.exports =
         atom.workspaceView.append(ui)
 
     showTemplateEditor: ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
 
         getter = atom.config.get 'php-getters-setters.getterTemplate'
         setter = atom.config.get 'php-getters-setters.setterTemplate'
@@ -98,7 +98,7 @@ module.exports =
         ui.show()
 
     showUI: ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
 
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
@@ -154,7 +154,7 @@ module.exports =
         bc.writeAtEnd(code)
 
     allGetters: (variables) ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
@@ -174,7 +174,7 @@ module.exports =
         bc.writeAtEnd(code)
 
     allSetters: (variables) ->
-        editor = Workspace.getActiveEditor()
+        editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.html.php' or editor.getGrammar().scopeName is 'source.php'
             alert ('this is not a PHP file')
             return
