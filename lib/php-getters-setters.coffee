@@ -41,7 +41,7 @@ module.exports =
 \ \ \ \ /** \n
 \ \ \ \ * Set the value of %description% \n
 \ \ \ \ * \n
-\ \ \ \ * @param %type% %variable%\n
+\ \ \ \ * @param %type% $%variable%\n
 \ \ \ \ * \n
 \ \ \ \ * @return self\n
 \ \ \ \ */\n
