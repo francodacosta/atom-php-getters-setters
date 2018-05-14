@@ -41,9 +41,6 @@ class TemplateEditorView extends View
 
     sanitizeTemplate: (template) =>
         return template
-                    .replace(/[^\S\r\n]+$/gm, '')
-                    .replace(/\ /g, "\\ ")
-                    # .replace(/\n/g, "\\n")
 
     save: ->
         getterTemplate = @sanitizeTemplate(@find('#txtGetter').val())
