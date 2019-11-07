@@ -9,7 +9,7 @@
         { 'label': 'Generate All', 'command': 'php-getters-setters:allGettersSetter' }
         { 'label': 'Generate Getters', 'command': 'php-getters-setters:allGetters' }
         { 'label': 'Generate Setters', 'command': 'php-getters-setters:allSetters' }
-        { '-': '-'}
+        { 'type': 'separator' }
         { 'label': 'Open UI', 'command': 'php-getters-setters:showUI' }
         { 'label': 'Template Editor', 'command': 'php-getters-setters:templateEditor' }
         # { 'label': 'Add Property', 'command': 'php-getters-setters:newPropery' }
